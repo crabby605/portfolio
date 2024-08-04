@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizontal Scrolling Portfolio</title>
+    <title>crabby.me</title>
+    <!-- Link to the favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -39,6 +41,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            position: relative; /* Position relative to position the next button */
         }
 
         .highlight {
@@ -60,6 +63,17 @@
 
         .button:hover {
             background-color: #0056b3;
+        }
+
+        .next-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: #28a745; /* Green color for 'Next' button */
+        }
+
+        .next-button:hover {
+            background-color: #218838; /* Darker green shade on hover */
         }
 
         .portrait-message {
@@ -89,18 +103,23 @@
                     Welcome to <span class="highlight">crabby</span>.<span class="highlight">me</span>
                 </h1>
                 <button class="button" onclick="scrollNext()">Click me to go</button>
+                <button class="button next-button" onclick="scrollToNextSection()">Next</button>
             </div>
             <div class="section" style="background-color: #333;">
                 <h1>Section 2</h1>
+                <button class="button next-button" onclick="scrollToNextSection()">Next</button>
             </div>
             <div class="section" style="background-color: #555;">
                 <h1>Section 3</h1>
+                <button class="button next-button" onclick="scrollToNextSection()">Next</button>
             </div>
             <div class="section" style="background-color: #777;">
                 <h1>Section 4</h1>
+                <button class="button next-button" onclick="scrollToNextSection()">Next</button>
             </div>
             <div class="section" style="background-color: #999;">
                 <h1>Section 5</h1>
+                <button class="button next-button" onclick="scrollToNextSection()">Next</button>
             </div>
         </div>
     </div>
@@ -117,6 +136,18 @@
                 left: container.clientWidth,
                 behavior: 'smooth'
             });
+        }
+
+        function scrollToNextSection() {
+            const container = document.querySelector('.scroll-container');
+            const sections = Array.from(container.querySelectorAll('.section'));
+            const currentIndex = sections.findIndex(section => section.getBoundingClientRect().left === 0);
+            if (currentIndex >= 0 && currentIndex < sections.length - 1) {
+                container.scrollTo({
+                    left: sections[currentIndex + 1].offsetLeft,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         function checkOrientation() {
@@ -138,3 +169,5 @@
     </script>
 </body>
 </html>
+
+
