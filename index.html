@@ -3,81 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>crabby's Corner</title>
-    <link rel="stylesheet" href="main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
-   
+    <title>Horizontal Scrolling Portfolio</title>
+    <style>
+        /* Importing Poppins font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Hide default scrollbar */
+            font-family: 'Poppins', sans-serif; /* Applying Poppins font */
+        }
 
+        .scroll-container {
+            display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            scroll-behavior: smooth; /* Smooth scrolling */
+            height: 100vh; /* Full viewport height */
+        }
+
+        .scroll-content {
+            display: flex;
+            height: 100%;
+        }
+
+        .section {
+            min-width: 100vw; /* Full viewport width for each section */
+            height: 100%;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .highlight {
+            color: #00f; /* Blue color for 'crabby' and 'me' */
+        }
+
+        .button {
+            margin-top: 20px; /* Space above the button */
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: white;
+            background-color: #007bff; /* Button color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+    </style>
 </head>
 <body>
+    <div class="scroll-container">
+        <div class="scroll-content">
+            <div class="section">
+                <h1>
+                    Welcome to <span class="highlight">crabby</span>.<span class="highlight">me</span>
+                </h1>
+                <button class="button" onclick="scrollNext()">Click me to go</button>
+            </div>
+            <div class="section" style="background-color: #333;">
+                <h1>Section 2</h1>
+            </div>
+            <div class="section" style="background-color: #555;">
+                <h1>Section 3</h1>
+            </div>
+            <!-- Add more sections as needed -->
+        </div>
+    </div>
 
-    <nav class="container">
-        <ul>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#social">Social Media</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#learning">Learning Journey</a></li>
-            <li><a href="/game1/gamepage.html">Game Page</a></li>
-            <li><a href="adgad.html">Why Use AdGaurd</a></li>
-        </ul>
-    </nav>
-
-    <main class="container">
-        <section id="about" class="section">
-            <h2>About Me</h2>
-            
-            <p>my name is vihaan popularly known as crabby on the internet i also play games so come on if u wanna join me i play Minecraft,Valorant,Fortnite,and bit more of these and i know Java and JavaScript im also a huge android fan wish me on 1st of november and if u have read so far visit my game page</p>
-        </section>
-
-        <section id="social" class="section">
-            <h2>Social Media</h2>
-            <ul>
-                <li><a href="https://www.instagram.com/Vihaan.pi">Instagram</a></li>
-                <li><a href="https://www.reddit.com/user/Crabby605">Reddit</a></li>
-                <li><a href="https://github.com/Crabby605">GitHub</a></li>
-                <li><a href="https://www.discord.com/users/971263636825866250">Discord</a></li>
-            </ul>
-        </section>
-
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            <p><a href="https://github.com/Crabby605">GitHub Repository</a> - Check out some of my coding projects!</p>
-            <p><a href="https://www.reddit.com/user/Crabby605">Reddit</a> - Join me for discussions on various topics!</p>
-        </section>
-
-        <section id="learning" class="section">
-            <h2>Learning Journey</h2>
-            <p>im currently learning SQL and linux so if you have any tips
-          share them with me on my social media accounts or here vihaanpingalkar4@proton.me
-            if you want visit me at hack club you should join too its fun visit me at crabby.hackclub.com</p>
-        </section>
-    </main>
-    <form action="https://send.pageclip.co/hgnj9qc9pkii3DEmwtABtRyLQeSHLUfx" class="pageclip-form" method="post">
-  <!-- Replace these inputs with your own. Make sure they have a "name" attribute! -->
-  <input type="text" name="name" value="Roscoe Jones" />
-  <input type="email" name="email" value="roscoe@example.com" />
-
-  <!-- This button will have a loading spinner. Keep the inner span for best results. -->
-  <button type="submit" class="pageclip-form__submit">
-    <span>Send</span>
-  </button>
-</form>
-<section id="love" class="section">
-  <body>
-      <p>
-    <blockquote>Made With ❤️ by Vihaan</blockquote>
-      </p>
-  </body></section>
-    <footer class="container">
-        <p>© 2024 crabby's Corner. All rights reserved.</p>
-    </footer>
-    <script>src="buttonlit.js"</script>
-    <script src="script.js"></script>
-    <script src="oneko.js"></script>
-    <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
-    
+    <script>
+        function scrollNext() {
+            const container = document.querySelector('.scroll-container');
+            container.scrollBy({
+                left: container.clientWidth,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
 </html>
+
