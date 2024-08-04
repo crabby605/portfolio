@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horizontal Scrolling Portfolio</title>
     <style>
-        /* Importing Poppins font from Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
         body, html {
@@ -13,15 +12,16 @@
             padding: 0;
             height: 100%;
             width: 100%;
-            overflow: hidden; /* Hide default scrollbar */
-            font-family: 'Poppins', sans-serif; /* Applying Poppins font */
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
         }
 
         .scroll-container {
             display: flex;
-            overflow-x: auto; /* Enable horizontal scrolling */
-            scroll-behavior: smooth; /* Smooth scrolling */
-            height: 100vh; /* Full viewport height */
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            height: 100vh;
+            overflow-y: hidden;
         }
 
         .scroll-content {
@@ -30,7 +30,7 @@
         }
 
         .section {
-            min-width: 100vw; /* Full viewport width for each section */
+            min-width: 100vw;
             height: 100%;
             background-color: black;
             color: white;
@@ -42,15 +42,15 @@
         }
 
         .highlight {
-            color: #00f; /* Blue color for 'crabby' and 'me' */
+            color: #00f;
         }
 
         .button {
-            margin-top: 20px; /* Space above the button */
+            margin-top: 20px;
             padding: 10px 20px;
             font-size: 1.2rem;
             color: white;
-            background-color: #007bff; /* Button color */
+            background-color: #007bff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -59,7 +59,25 @@
         }
 
         .button:hover {
-            background-color: #0056b3; /* Darker shade on hover */
+            background-color: #0056b3;
+        }
+
+        .portrait-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            z-index: 1000;
+        }
+
+        .portrait-message button {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -78,8 +96,18 @@
             <div class="section" style="background-color: #555;">
                 <h1>Section 3</h1>
             </div>
-            <!-- Add more sections as needed -->
+            <div class="section" style="background-color: #777;">
+                <h1>Section 4</h1>
+            </div>
+            <div class="section" style="background-color: #999;">
+                <h1>Section 5</h1>
+            </div>
         </div>
+    </div>
+
+    <div id="portraitMessage" class="portrait-message">
+        <p>For the best experience, please rotate your device to landscape mode.</p>
+        <button onclick="dismissMessage()">Got it</button>
     </div>
 
     <script>
@@ -90,7 +118,23 @@
                 behavior: 'smooth'
             });
         }
+
+        function checkOrientation() {
+            const portraitMessage = document.getElementById('portraitMessage');
+            if (window.innerHeight > window.innerWidth) {
+                portraitMessage.style.display = 'block';
+            } else {
+                portraitMessage.style.display = 'none';
+            }
+        }
+
+        function dismissMessage() {
+            const portraitMessage = document.getElementById('portraitMessage');
+            portraitMessage.style.display = 'none';
+        }
+
+        window.addEventListener('resize', checkOrientation);
+        window.addEventListener('load', checkOrientation);
     </script>
 </body>
 </html>
-
