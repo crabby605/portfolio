@@ -93,6 +93,52 @@
         .portrait-message button {
             margin-top: 10px;
         }
+
+        .code-snippet {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            font-family: monospace;
+            white-space: pre-wrap;
+            display: none;
+        }
+
+        .certificates img {
+            width: 100%;
+            max-width: 600px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .socials {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .socials a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 10px;
+            font-size: 1.2rem;
+        }
+
+        .donation-button {
+            background-color: #e74c3c; /* Red color for donation button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .donation-button:hover {
+            background-color: #c82333; /* Darker red shade on hover */
+        }
     </style>
 </head>
 <body>
@@ -103,23 +149,63 @@
                     Welcome to <span class="highlight">crabby</span>.<span class="highlight">me</span>
                 </h1>
                 <button class="button" onclick="scrollNext()">Click here to go</button>
-               
             </div>
-            <div class="section" style="background-color: #black;">
-                <h1>Section 2</h1>
+            <div class="section">
+                <h1>About Me</h1>
+                <p>Hi, I'm <span class="highlight">Vihaan Pingalkar</span>. Welcome to my personal space!</p>
+                <div id="hobbies">
+                    <!-- Add your hobby sections here -->
+                </div>
                 <button class="button next-button" onclick="scrollToNextSection()">Next</button>
             </div>
-            <div class="section" style="background-color: #black;">
-                <h1>Section 3</h1>
+            <div class="section">
+                <h1>My Coding Skills</h1>
+                <p>Click the button below to see my coding skills in action!</p>
+                <button class="button" onclick="showSkills()">See Skills</button>
+                <div id="skillsContainer">
+                    <div id="jsSnippet" class="code-snippet">
+                        <p><code>console.log("I can do JS");</code></p>
+                    </div>
+                    <div id="sqlSnippet" class="code-snippet">
+                        <p><code>SELECT * FROM skills WHERE name = 'JS';</code></p>
+                    </div>
+                    <div id="javaSnippet" class="code-snippet">
+                        <p><code>System.out.println("I can do Java");</code></p>
+                    </div>
+                    <div id="pythonSnippet" class="code-snippet">
+                        <p><code>print("I can do Python")</code></p>
+                    </div>
+                    <div id="linuxSnippet" class="code-snippet">
+                        <p><code>echo "I can use Linux"</code></p>
+                    </div>
+                </div>
                 <button class="button next-button" onclick="scrollToNextSection()">Next</button>
             </div>
-            <div class="section" style="background-color: #black;">
-                <h1>Section 4</h1>
+            <div class="section">
+                <h1>My Learning Journey</h1>
+                <p>Here are some of the platforms and achievements from my learning journey:</p>
+                <div class="certificates">
+                    <h2>EDX</h2>
+                    <a href="https://www.edx.org/"><img src="edx-certificate.jpg" alt="EDX Certificate"></a>
+                    <h2>GitHub</h2>
+                    <a href="https://github.com/"><img src="github-certificate.jpg" alt="GitHub Certificate"></a>
+                    <h2>Hack Club</h2>
+                    <a href="https://hackclub.com/"><img src="hackclub-certificate.jpg" alt="Hack Club Certificate"></a>
+                    <h2>LeetCode</h2>
+                    <a href="https://leetcode.com/"><img src="leetcode-certificate.jpg" alt="LeetCode Certificate"></a>
+                    <h2>Google Cloud</h2>
+                    <a href="https://cloud.google.com/"><img src="google-cloud-certificate.jpg" alt="Google Cloud Certificate"></a>
+                </div>
                 <button class="button next-button" onclick="scrollToNextSection()">Next</button>
             </div>
-            <div class="section" style="background-color: #black;">
-                <h1>Section 5</h1>
-               
+            <div class="section">
+                <h1>My Socials</h1>
+                <div class="socials">
+                    <a href="https://github.com/your-username" target="_blank">GitHub</a>
+                    <a href="https://www.reddit.com/user/your-username" target="_blank">Reddit</a>
+                    <a href="mailto:your-email@example.com">Email Me</a>
+                    <button class="donation-button" onclick="donate()">Donate</button>
+                </div>
             </div>
         </div>
     </div>
@@ -150,6 +236,17 @@
             }
         }
 
+        function showSkills() {
+            document.querySelectorAll('.code-snippet').forEach(snippet => {
+                snippet.style.display = 'block';
+            });
+        }
+
+        function donate() {
+            // Replace this URL with your actual donation link (e.g., PayPal, Buy Me a Coffee, etc.)
+            window.open('https://www.buymeacoffee.com/your-username', '_blank');
+        }
+
         function checkOrientation() {
             const portraitMessage = document.getElementById('portraitMessage');
             if (window.innerHeight > window.innerWidth) {
@@ -169,5 +266,3 @@
     </script>
 </body>
 </html>
-
-
