@@ -112,6 +112,16 @@
             border-radius: 5px;
         }
 
+        .certificates textarea {
+            width: 100%;
+            height: 60px;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
         .socials {
             display: flex;
             flex-direction: column;
@@ -139,6 +149,54 @@
         .donation-button:hover {
             background-color: #c82333; /* Darker red shade on hover */
         }
+
+        .skills-section {
+            text-align: center;
+        }
+
+        .skills-filter {
+            margin: 20px 0;
+        }
+
+        .skills-filter button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .skills-filter button:hover {
+            background-color: #0056b3;
+        }
+
+        .skills-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .skill-category {
+            display: none;
+        }
+
+        .skill-category.active {
+            display: block;
+        }
+
+        .skill-item {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -160,23 +218,42 @@
             </div>
             <div class="section">
                 <h1>My Coding Skills</h1>
-                <p>Click the button below to see my coding skills in action!</p>
-                <button class="button" onclick="showSkills()">See Skills</button>
-                <div id="skillsContainer">
-                    <div id="jsSnippet" class="code-snippet">
-                        <p><code>console.log("I can do JS");</code></p>
+                <p>Click the buttons below to filter and view my coding skills:</p>
+                <div class="skills-section">
+                    <div class="skills-filter">
+                        <button onclick="filterSkills('js')">JavaScript</button>
+                        <button onclick="filterSkills('sql')">SQL</button>
+                        <button onclick="filterSkills('java')">Java</button>
+                        <button onclick="filterSkills('python')">Python</button>
+                        <button onclick="filterSkills('linux')">Linux</button>
+                        <button onclick="filterSkills('all')">Show All</button>
                     </div>
-                    <div id="sqlSnippet" class="code-snippet">
-                        <p><code>SELECT * FROM skills WHERE name = 'JS';</code></p>
-                    </div>
-                    <div id="javaSnippet" class="code-snippet">
-                        <p><code>System.out.println("I can do Java");</code></p>
-                    </div>
-                    <div id="pythonSnippet" class="code-snippet">
-                        <p><code>print("I can do Python")</code></p>
-                    </div>
-                    <div id="linuxSnippet" class="code-snippet">
-                        <p><code>echo "I can use Linux"</code></p>
+                    <div class="skills-content">
+                        <div class="skill-category js">
+                            <div class="skill-item">
+                                <p><code>console.log("I can do JS");</code></p>
+                            </div>
+                        </div>
+                        <div class="skill-category sql">
+                            <div class="skill-item">
+                                <p><code>SELECT * FROM skills WHERE name = 'JS';</code></p>
+                            </div>
+                        </div>
+                        <div class="skill-category java">
+                            <div class="skill-item">
+                                <p><code>System.out.println("I can do Java");</code></p>
+                            </div>
+                        </div>
+                        <div class="skill-category python">
+                            <div class="skill-item">
+                                <p><code>print("I can do Python")</code></p>
+                            </div>
+                        </div>
+                        <div class="skill-category linux">
+                            <div class="skill-item">
+                                <p><code>echo "I can use Linux"</code></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button class="button next-button" onclick="scrollToNextSection()">Next</button>
@@ -186,24 +263,45 @@
                 <p>Here are some of the platforms and achievements from my learning journey:</p>
                 <div class="certificates">
                     <h2>EDX</h2>
-                    <a href="https://www.edx.org/"><img src="edx-certificate.jpg" alt="EDX Certificate"></a>
+                    <a href="https://www.edx.org/profile/your-edx-profile-id">
+                        <img src="edx-certificate.jpg" alt="EDX Certificate">
+                    </a>
+                    <textarea placeholder="Add notes about your EDX certificate here..."></textarea>
+
                     <h2>GitHub</h2>
-                    <a href="https://github.com/"><img src="github-certificate.jpg" alt="GitHub Certificate"></a>
+                    <a href="https://github.com/your-profile">
+                        <img src="github-certificate.jpg" alt="GitHub Certificate">
+                    </a>
+                    <textarea placeholder="Add notes about your GitHub certificate here..."></textarea>
+
                     <h2>Hack Club</h2>
-                    <a href="https://hackclub.com/"><img src="hackclub-certificate.jpg" alt="Hack Club Certificate"></a>
+                    <a href="https://hackclub.com/certificates/your-certificate-id">
+                        <img src="hackclub-certificate.jpg" alt="Hack Club Certificate">
+                    </a>
+                    <textarea placeholder="Add notes about your Hack Club certificate here..."></textarea>
+
                     <h2>LeetCode</h2>
-                    <a href="https://leetcode.com/"><img src="leetcode-certificate.jpg" alt="LeetCode Certificate"></a>
+                    <a href="https://leetcode.com/certificates/your-certificate-id">
+                        <img src="leetcode-certificate.jpg" alt="LeetCode Certificate">
+                    </a>
+                    <textarea placeholder="Add notes about your LeetCode certificate here..."></textarea>
+
                     <h2>Google Cloud</h2>
-                    <a href="https://cloud.google.com/"><img src="google-cloud-certificate.jpg" alt="Google Cloud Certificate"></a>
+                    <a href="https://cloud.google.com/certificates/your-certificate-id">
+                        <img src="google-cloud-certificate.jpg" alt="Google Cloud Certificate">
+                    </a>
+                    <textarea placeholder="Add notes about your Google Cloud certificate here..."></textarea>
+
+                    <p><a href="https://www.example.com/view-achievements" target="_blank">View All Achievements</a></p>
                 </div>
                 <button class="button next-button" onclick="scrollToNextSection()">Next</button>
             </div>
             <div class="section">
                 <h1>My Socials</h1>
                 <div class="socials">
-                    <a href="https://github.com/your-username" target="_blank">GitHub</a>
-                    <a href="https://www.reddit.com/user/your-username" target="_blank">Reddit</a>
-                    <a href="mailto:your-email@example.com">Email Me</a>
+                    <a href="https://github.com/crabby605" target="_blank">GitHub</a>
+                    <a href="https://www.reddit.com/user/crabby605" target="_blank">Reddit</a>
+                    <a href="mailto:vihaanpingalkar4@proton.me">Email Me</a>
                     <button class="donation-button" onclick="donate()">Donate</button>
                 </div>
             </div>
@@ -214,7 +312,6 @@
         <p>For the best experience, please rotate your device to landscape mode.</p>
         <button onclick="dismissMessage()">Got it</button>
     </div>
-     <script>oneko.js</script>
     <script>
         function scrollNext() {
             const container = document.querySelector('.scroll-container');
@@ -244,7 +341,18 @@
 
         function donate() {
             // Replace this URL with your actual donation link (e.g., PayPal, Buy Me a Coffee, etc.)
-            window.open('https://www.buymeacoffee.com/your-username', '_blank');
+            window.open('donation.html', '_blank');
+        }
+
+        function filterSkills(category) {
+            const skillCategories = document.querySelectorAll('.skill-category');
+            skillCategories.forEach(cat => {
+                if (category === 'all' || cat.classList.contains(category)) {
+                    cat.classList.add('active');
+                } else {
+                    cat.classList.remove('active');
+                }
+            });
         }
 
         function checkOrientation() {
