@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Agent Redirect</title>
+    <title>Redirecting...</title>
     <style>
         body {
             background-color: #121212;
@@ -16,40 +16,39 @@
             margin: 0;
             text-align: center;
         }
+        a {
+            color: #4caf50;
+        }
     </style>
     <script>
         window.onload = function() {
-            var userAgent = navigator.userAgent.toLowerCase();
-            var redirectUrl = '';
+            var ua = navigator.userAgent.toLowerCase();
+            var url = '';
 
-            if (userAgent.indexOf('android') > -1 || userAgent.indexOf('iphone') > -1 || userAgent.indexOf('ipad') > -1) {
-                // Redirect to mobile version
-                redirectUrl = 'https://mob.crabby.me';
-            } else if (userAgent.indexOf('linux') > -1 || userAgent.indexOf('mac os') > -1) {
-                // Redirect to Linux or macOS version
-                redirectUrl = 'https://adv.crabby.me';
-            } else if (userAgent.indexOf('windows') > -1) {
-                // Redirect to Windows version
-                redirectUrl = 'https://win.crabby.me';
+            if (/android|iphone|ipad/.test(ua)) {
+                url = 'https://mob.crabby.me';
+            } else if (/linux|mac os/.test(ua)) {
+                url = 'https://adv.crabby.me';
+            } else if (/windows/.test(ua)) {
+                url = 'https://win.crabby.me';
             }
 
-            if (redirectUrl) {
-                window.location.href = redirectUrl;
+            if (url) {
+                window.location.href = url;
             } else {
-                document.getElementById('fallback').style.display = 'block';
+                document.body.innerHTML = `
+                    <h1>Choose your platform:</h1>
+                    <ul>
+                        <li><a href="https://adv.crabby.me">Linux/macOS</a></li>
+                        <li><a href="https://mob.crabby.me">Mobile (iOS/Android)</a></li>
+                        <li><a href="https://win.crabby.me">Windows</a></li>
+                        <li><a href="https://ai.crabby.me">AI Platform</a></li>
+                    </ul>`;
             }
         }
     </script>
 </head>
 <body>
-    <div id="fallback" style="display: none;">
-        <h1>Choose your platform:</h1>
-        <ul>
-            <li><a href="https://adv.crabby.me" style="color: #4caf50;">Linux/macOS</a></li>
-            <li><a href="https://mob.crabby.me" style="color: #4caf50;">Mobile (iOS/Android)</a></li>
-            <li><a href="https://win.crabby.me" style="color: #4caf50;">Windows</a></li>
-            <li><a href="https://ai.crabby.me" style="color: #4caf50;">AI Platform</a></li>
-        </ul>
-    </div>
+    <p>Redirecting...</p>
 </body>
 </html>
