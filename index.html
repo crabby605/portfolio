@@ -3,363 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>crabby.me</title>
-    <!-- Link to the favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>User Agent Redirect</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .scroll-container {
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
             display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            height: 100vh;
-            overflow-y: hidden;
-        }
-
-        .scroll-content {
-            display: flex;
-            height: 100%;
-        }
-
-        .section {
-            min-width: 100vw;
-            height: 100%;
-            background-color: black;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            text-align: center;
-            position: relative; /* Position relative to position the next button */
-        }
-
-        .highlight {
-            color: #00f;
-        }
-
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.2rem;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-
-        .next-button {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background-color: #28a745; /* Green color for 'Next' button */
-        }
-
-        .next-button:hover {
-            background-color: #218838; /* Darker green shade on hover */
-        }
-
-        .portrait-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            display: none;
-            z-index: 1000;
-        }
-
-        .portrait-message button {
-            margin-top: 10px;
-        }
-
-        .code-snippet {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: left;
-            font-family: monospace;
-            white-space: pre-wrap;
-            display: none;
-        }
-
-        .certificates img {
-            width: 100%;
-            max-width: 600px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-
-        .certificates textarea {
-            width: 100%;
-            height: 60px;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .socials {
-            display: flex;
-            flex-direction: column;
             align-items: center;
-        }
-
-        .socials a {
-            color: #007bff;
-            text-decoration: none;
-            margin: 10px;
-            font-size: 1.2rem;
-        }
-
-        .donation-button {
-            background-color: #e74c3c; /* Red color for donation button */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        .donation-button:hover {
-            background-color: #c82333; /* Darker red shade on hover */
-        }
-
-        .skills-section {
+            height: 100vh;
+            margin: 0;
             text-align: center;
-        }
-
-        .skills-filter {
-            margin: 20px 0;
-        }
-
-        .skills-filter button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .skills-filter button:hover {
-            background-color: #0056b3;
-        }
-
-        .skills-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .skill-category {
-            display: none;
-        }
-
-        .skill-category.active {
-            display: block;
-        }
-
-        .skill-item {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 5px;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
+    <script>
+        window.onload = function() {
+            var userAgent = navigator.userAgent.toLowerCase();
+            var redirectUrl = '';
+
+            if (userAgent.indexOf('android') > -1 || userAgent.indexOf('iphone') > -1 || userAgent.indexOf('ipad') > -1) {
+                // Redirect to mobile version
+                redirectUrl = 'https://mob.crabby.me';
+            } else if (userAgent.indexOf('linux') > -1 || userAgent.indexOf('mac os') > -1) {
+                // Redirect to Linux or macOS version
+                redirectUrl = 'https://adv.crabby.me';
+            } else if (userAgent.indexOf('windows') > -1) {
+                // Redirect to Windows version
+                redirectUrl = 'https://win.crabby.me';
+            }
+
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            } else {
+                document.getElementById('fallback').style.display = 'block';
+            }
+        }
+    </script>
 </head>
 <body>
-    <div class="scroll-container">
-        <div class="scroll-content">
-            <div class="section">
-                <h1>
-                    Welcome to <span class="highlight">crabby</span>.<span class="highlight">me</span>
-                </h1>
-                <button class="button" onclick="scrollNext()">Click here to go</button>
-            </div>
-            <div class="section">
-                <h1>About Me</h1>
-                <p>Hi, I'm <span class="highlight">Vihaan Pingalkar</span>. Welcome to my personal space!</p>
-                <div id="hobbies">
-                    <p>I play some games and do coding im not a adult either if you can wish me on the first of november and if you look all through the portfolio consider donating to keep this site up and running</p>
-                </div>
-                <button class="button next-button" onclick="scrollToNextSection()">Next</button>
-            </div>
-            <div class="section">
-                <h1>My Coding Skills</h1>
-                <p>Click the buttons below to filter and view my coding skills:</p>
-                <div class="skills-section">
-                    <div class="skills-filter">
-                        <button onclick="filterSkills('js')">JavaScript</button>
-                        <button onclick="filterSkills('sql')">SQL</button>
-                        <button onclick="filterSkills('java')">Java</button>
-                        <button onclick="filterSkills('python')">Python</button>
-                        <button onclick="filterSkills('linux')">Linux</button>
-                        <button onclick="filterSkills('all')">Show All</button>
-                    </div>
-                    <div class="skills-content">
-                        <div class="skill-category js">
-                            <div class="skill-item">
-                                <p><code>console.log("I can do JS");</code></p>
-                                <p>look i made it look the best i can</p>
-                            </div>
-                        </div>
-                        <div class="skill-category sql">
-                            <div class="skill-item">
-                                <p><code>SELECT * FROM skills WHERE name = 'JS';</code></p>
-                            </div>
-                        </div>
-                        <div class="skill-category java">
-                            <div class="skill-item">
-                                <p><code>System.out.println("I can do Java");</code></p>
-                            </div>
-                        </div>
-                        <div class="skill-category python">
-                            <div class="skill-item">
-                                <p><code>print("I can do Python")</code></p>
-                            </div>
-                        </div>
-                        <div class="skill-category linux">
-                            <div class="skill-item">
-                                <p><code>echo "I can use Linux"</code></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="button next-button" onclick="scrollToNextSection()">Next</button>
-            </div>
-            <div class="section">
-                <h1>My Learning Journey</h1>
-                <p>Here are some of the platforms and achievements from my learning journey:</p>
-                <div class="certificates">
-                    <h2>EDX</h2>
-                   <p>im on edx learing python using the cs50 by harvard and a python course by MIT hope it finishes an i pass</p>
-
-                    <h2>GitHub</h2>
-                 <p>im on github go to my last page to see and visit it :0</p>
-
-                    <h2>Hack Club</h2>
-                    <a href="https://hack.club/r68gu">
-                       
-                    </a>
-                   <p>yes i do have a hackclub if you wanna se the devlopment see my scrapbook https://hack.club/r68gu or maybe scan the above?</p>
-
-                    <h2>LeetCode</h2>
-                <p>like any other senible person i have leet code</p>
-
-                    <h2>Google Cloud</h2>
-                      <p>i have also learnt to use google cloud if you ant see my achivements down there</p>
-
-                    <p><a href="ach.html" target="_blank">View All Achievements</a></p>
-                </div>
-                <button class="button next-button" onclick="scrollToNextSection()">Next</button>
-            </div>
-            <div class="section">
-                <h1>My Socials</h1>
-                <div class="socials">
-                    <a href="https://github.com/crabby605" target="_blank">GitHub</a>
-                    <a href="https://www.reddit.com/user/crabby605" target="_blank">Reddit</a>
-                    <a href="mailto:vihaanpingalkar4@proton.me">Email Me</a>
-                    <button class="donation-button" onclick="donate()">Donate</button>
-                </div>
-            </div>
-        </div>
+    <div id="fallback" style="display: none;">
+        <h1>Choose your platform:</h1>
+        <ul>
+            <li><a href="https://adv.crabby.me" style="color: #4caf50;">Linux/macOS</a></li>
+            <li><a href="https://mob.crabby.me" style="color: #4caf50;">Mobile (iOS/Android)</a></li>
+            <li><a href="https://win.crabby.me" style="color: #4caf50;">Windows</a></li>
+            <li><a href="https://ai.crabby.me" style="color: #4caf50;">AI Platform</a></li>
+        </ul>
     </div>
-
-    <div id="portraitMessage" class="portrait-message">
-        <p>For the best experience, please rotate your device to landscape mode.</p>
-        <button onclick="dismissMessage()">Got it</button>
-    </div>
-    <script>
-        function scrollNext() {
-            const container = document.querySelector('.scroll-container');
-            container.scrollBy({
-                left: container.clientWidth,
-                behavior: 'smooth'
-            });
-        }
-
-        function scrollToNextSection() {
-            const container = document.querySelector('.scroll-container');
-            const sections = Array.from(container.querySelectorAll('.section'));
-            const currentIndex = sections.findIndex(section => section.getBoundingClientRect().left === 0);
-            if (currentIndex >= 0 && currentIndex < sections.length - 1) {
-                container.scrollTo({
-                    left: sections[currentIndex + 1].offsetLeft,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        function showSkills() {
-            document.querySelectorAll('.code-snippet').forEach(snippet => {
-                snippet.style.display = 'block';
-            });
-        }
-
-        function donate() {
-            // Replace this URL with your actual donation link (e.g., PayPal, Buy Me a Coffee, etc.)
-            window.open('donation.html', '_blank');
-        }
-
-        function filterSkills(category) {
-            const skillCategories = document.querySelectorAll('.skill-category');
-            skillCategories.forEach(cat => {
-                if (category === 'all' || cat.classList.contains(category)) {
-                    cat.classList.add('active');
-                } else {
-                    cat.classList.remove('active');
-                }
-            });
-        }
-
-        function checkOrientation() {
-            const portraitMessage = document.getElementById('portraitMessage');
-            if (window.innerHeight > window.innerWidth) {
-                portraitMessage.style.display = 'block';
-            } else {
-                portraitMessage.style.display = 'none';
-            }
-        }
-
-        function dismissMessage() {
-            const portraitMessage = document.getElementById('portraitMessage');
-            portraitMessage.style.display = 'none';
-        }
-
-        window.addEventListener('resize', checkOrientation);
-        window.addEventListener('load', checkOrientation);
-    </script>
 </body>
 </html>
